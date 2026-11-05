@@ -10,7 +10,7 @@ function mapHTML(day, index) {
  const categories=[...new Set((day.optionalActivities||[]).map(a=>a.category))];
  const legend=categories.length?`<fieldset class="optional-map-filters"><legend>Optional pins · show / hide</legend>${categories.map(key=>`<label style="--category-color:${ACTIVITY_CATEGORIES[key].color}"><input type="checkbox" data-option-category="${key}" checked><span class="legend-dot"></span>${ACTIVITY_CATEGORIES[key].label}</label>`).join('')}</fieldset>`:'';
  const country = day.country === 'NZ' ? 'New Zealand' : 'Australia';
- return `<section class="day-map-section" aria-label="Interactive route for day ${index + 1}"><div class="map-section-heading"><h4>Today’s route</h4><button type="button" class="fit-map" data-fit-map="${index}">Show whole route ↗</button></div>${legend}<div class="day-map-grid"><div class="interactive-map" id="route-map-${index}" aria-label="Interactive route map for ${escapeHTML(day.region)}" role="region" tabindex="0"></div><aside class="map-sidebar"><div><p class="overview-label">${country} · overview</p><div class="country-map" id="country-map-${index}" role="img" aria-label="Whole of ${country} with today’s route highlighted"></div></div><div class="map-stops" id="map-stops-${index}" aria-label="Route stops"></div></aside></div><p class="map-caption">Select a numbered pin or stop for details. Drag to explore; use + / − to zoom. <span class="route-key">Today</span> <span class="prior-key">Earlier days</span><br>${day.route.schematic ? 'Dashed connections are schematic, not navigable routes.' : 'Saved road route from OSRM; optional activities are not added to the driving route. No live traffic or navigation.'} Map tiles need an internet connection. <a href="https://www.openstreetmap.org/fixthemap" target="_blank" rel="noopener noreferrer">Report a map issue ↗</a></p><p class="map-load-status" id="map-status-${index}" role="status"></p></section>`;
+ return `<section class="day-map-section" aria-label="Interactive route for day ${index + 1}"><div class="map-section-heading"><h4>Today’s route</h4><button type="button" class="fit-map" data-fit-map="${index}">Show whole route ↗</button></div>${legend}<div class="day-map-grid"><div class="interactive-map" id="route-map-${index}" aria-label="Interactive route map for ${escapeHTML(day.region)}" role="region" tabindex="0"></div><aside class="map-sidebar"><div><p class="overview-label">${country} · overview</p><div class="country-map" id="country-map-${index}" role="img" aria-label="Whole of ${country} with today’s route highlighted"></div></div><div class="map-stops" id="map-stops-${index}" aria-label="Route stops"></div></aside></div><p class="map-caption">Select a numbered pin or stop for details. Drag to explore; use + / − to zoom. <span class="route-key">Today</span> <span class="prior-key">Earlier days</span><br>${day.route.schematic ? 'Dashed connections are schematic, not navigable routes.' : 'Saved road route from OSRM; optional activities are not added to the driving route. No live traffic or navigation.'} ${day.mapNote?escapeHTML(day.mapNote)+' ':''}Map tiles need an internet connection. <a href="https://www.openstreetmap.org/fixthemap" target="_blank" rel="noopener noreferrer">Report a map issue ↗</a></p><p class="map-load-status" id="map-status-${index}" role="status"></p></section>`;
 }
 function disposeTripMaps() {
  tripMapInstances.forEach(({map, overview, observer}) => {observer.disconnect();map.remove();overview.remove()});
@@ -79,6 +79,24 @@ function setupTripMaps(tripData) {
    }));
    const bounds=route.getBounds().extend(L.latLngBounds(markers.map(m=>m.getLatLng())));
    optionalMarkers.forEach(marker=>bounds.extend(marker.getLatLng()));
+   const refreshLabels=()=>{
+    const size=map.getSize();
+    markers.forEach((marker,n)=>{
+     const tip=marker.getTooltip();
+     if(!map.hasLayer(marker)||!tip?.getElement())return;
+     const point=map.latLngToContainerPoint(marker.getLatLng());
+     const width=tip.getElement().offsetWidth||120;
+     let direction=['left','right','top','bottom'][n%4];
+     if(point.x<width+25)direction='right';
+     else if(point.x>size.x-width-25)direction='left';
+     if(direction==='top'&&point.y<55)direction='bottom';
+     if(direction==='bottom'&&point.y>size.y-40)direction='top';
+     tip.options.direction=direction;
+     tip.options.offset=L.point({left:[-16,-17],right:[16,-17],top:[0,-35],bottom:[0,4]}[direction]);
+     tip.update();
+    });
+   };
+   map.on('moveend resize',refreshLabels);
    const fit=()=>{map.stop();map.closePopup();map.invalidateSize();map.fitBounds(bounds,{padding:[map.getSize().x<500?32:65,45],maxZoom:14,animate:false})};
    document.querySelector(`[data-fit-map="${index}"]`).addEventListener('click',fit);
    const countryBounds=day.country==='NZ'?[[-47.6,166],[-34,179.2]]:[[-44,112],[-10,154]];

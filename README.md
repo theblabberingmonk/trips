@@ -49,3 +49,15 @@ The bottom budget box shows per-person costs assuming two adults share rooms and
 24 Dec now keeps Christchurch → Tekapo → Pukaki → Twizel and continues via the Waitaki Valley to Oamaru. 25 Dec begins in Oamaru, returns via Twizel to Mount Cook, then keeps Lindis Pass and Queenstown. Both route geometries were recomputed with OSRM; driving allowances include buffers beyond the routing baseline. No original main destination or optional activity was removed.
 
 Oamaru is the selected overnight town; no hotel is booked. The first-night room cap is NZ$200 total for two, with saved Booking.com candidates and a late-check-in warning. The budget separates that night from the two unverified Queenstown room allowances and increases NZ fuel / parking for the detour. New optional places include the heritage precinct, dated evening penguin viewing (late finish possible), and Elephant Rocks. Steampunk HQ is not scheduled: it closes before the expected 24 Dec arrival and is closed Christmas Day.
+
+Latest NZ budget inputs: NZ$850 total shared rental (supplied as a 3-day price; exact 3-day 6h 30m pickup/return span and fee inclusions need confirmation), and NZ$100 per person per night for all three NZ accommodation nights. The rental budget is not counted again as a separate fee reserve.
+
+Australia accommodation target: AUD100–150 per person per night across seven nights (AUD200–300 per shared room). The budget now uses this consistently for Melbourne, both coastal nights and Sydney. This remains a spending target, not a confirmed booking.
+
+## Christchurch return and 28 December flight
+
+The latest plan omits Glenorchy. 27 Dec follows Queenstown → Crown Range → Cardrona → Wānaka → Tekapo → Christchurch airport area (about 507 km, routing baseline 7.9h before stops). Overnight Christchurch replaces Melbourne. The supplied 28 Dec JQ172 candidate leaves CHC at 09:15 and reaches MEL at 11:05; fare AUD457 per person, unbooked.
+
+Correct rental targets: 24 Dec around 11:00 pickup, 28 Dec 05:45–06:00 handover, terminal around 06:15. Mint’s listed office opens at 08:00; early return and shuttle are unconfirmed and require written supplier arrangements. The NZ$522.30 example was searched for incompatible 08:00 times; reprice before paying. Budget retains that provisional base plus an early-return/transfer reserve.
+
+28 Dec’s default Australian route is now Melbourne Airport directly to Lakes Entrance; Wilsons Prom, Squeaky Beach, Tidal River and the wildlife walk remain explicitly deferred alternatives rather than impossible additions after the morning flight. Milford is still the coach/cruise version; self-driving was discussed but not selected.
