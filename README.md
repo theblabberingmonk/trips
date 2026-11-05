@@ -1,6 +1,6 @@
 # Trips ↗
 
-A simple, responsive personal travel journal. The home page lists journeys; **New Year 2027 [Aus & NZ]** includes the saved 11-day itinerary, daily route maps, photos, target schedules, transport and accommodation plans, booking priorities, and a browser-local journal with text export.
+A simple, responsive personal travel journal. The home page lists journeys; **New Year 2027 [Aus & NZ]** includes the outbound Delhi–Guangzhou–Christchurch flight option and saved 11-day itinerary, daily route maps, photos, target schedules, transport and accommodation plans, booking priorities, and a browser-local journal with text export.
 
 ## Run locally
 
@@ -20,7 +20,7 @@ To add a journey, add its data and a route in `app.js`, then add a home-page car
 
 The content comes from the existing Australia / New Zealand planning project. It is a saved planning snapshot, not live travel advice: dates, prices, access rules, roads, and bookings need reconfirmation. All bookings remain unconfirmed. Detailed daily guide schedules take precedence over the earlier rough outline.
 
-Journal notes use localStorage in the current browser and origin. They are not committed, synced, or sent to a server. Use Export notes for a backup. Clearing browser data removes saved notes.
+Journal notes use localStorage in the current browser and origin. They are not committed, synced, or sent to a server. Each flight/day block also has its own Things to do text box, saved independently in the same browser. Use Export notes for a backup of the journal and all block tasks. Clearing browser data removes saved notes.
 
 Passport scans, visa files, employer correspondence, and other private documents are intentionally excluded. Public repositories and static sites expose their bundled content.
 
