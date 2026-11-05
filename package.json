@@ -3,5 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "description": "A simple personal trip journal",
-  "scripts": {"dev": "python3 -m http.server 5173", "start": "python3 -m http.server 5173", "check": "node --check app.js"}
+  "scripts": {
+    "dev": "python3 scripts/serve.py",
+    "start": "python3 scripts/serve.py",
+    "check": "node --check app.js && node --check maps.js && node --check money.js"
+  }
 }
